@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<div class="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  
+  <div class="w-full pt-12 mt-5 ml-auto mr-auto">
+    <app-idea-form class="w-full max-w-lg"></app-idea-form>
+  </div>
+
+  
+  <div class="w-full mt-5 flex justify-center">
+    <select aria-placeholder="selectedOption" [(ngModel)]="selectedOption" (change)="onSelectionChange()" class="h-8 block w-full max-w-lg bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-sky-700 focus:border-sky-700 sm:text-sm">
+      <option value="" disabled selected class=" bg-gray-100 ">Choose an option</option>
+      <option value="popular" class="text-sky-700 bg-gray-100 font-bold">Most popular</option>
+      <option value="unpopular" class="text-sky-700 bg-gray-100 font-bold">Most unpopular</option>
+      <option value="controversial" class="text-sky-700 bg-gray-100 font-bold">Most controversial</option>
+    </select>
+  </div>
+
+  <div class="">
+    <ul class="w-full flex flex-col justify-center mt-5 items-center">
+      @for(item of ideas; track item.id) {
+       <app-idea [idea]="item" ></app-idea>
+      } @empty {
+        <li class="flex items-center flex-wrap content-between w-full px-4 py-2 border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+          No ideas have been posted yet. 
+        </li>
+      }
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+
+
+
+<div  class="flex items-center justify-center    pt-20 pb-4  ">
+    <div >
+        <img alt="Logo HiveMind" src="assets/logo.png" class="w-full max-h-40 mx-auto my-4">
+        <p class="text-5xl font-bold text-center text-sky-700 my-4">Welcome to HiveMind</p>
+        <p  class="sm:pl-8 max-w-md mx-auto text-center font-medium text-lg text-gray-700"> 
+            Do you have an idea to share? Something you want to say? This is the perfect place for you! Join us!
+        </p>
+        <div class="flex justify-center space-x-4">
+        @if(! this.authService.isUserAuthenticated()){
+            <a  routerLink="/signin" class="bg-sky-800 text-white py-2 px-4 rounded-md hover:bg-sky-500 cursor-pointer">Register</a>
+            <a  routerLink="/login" class="bg-sky-700 text-white py-2 px-4 rounded-md hover:bg-sky-950 cursor-pointer" >Login</a>
+          }
+          @else {
+            <a  class="bg-sky-700 text-white py-2 px-4 rounded-md hover:bg-sky-950 cursor-pointer"  [routerLink]="['/profile', authService.getUser()]">Your Profile</a>
+        }
+        </div>
+    </div>
+</div>
+

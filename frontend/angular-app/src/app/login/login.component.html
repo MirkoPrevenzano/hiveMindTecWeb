@@ -1,0 +1,57 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<div class="login">
+    <div class="login-form">
+        <div class="button-exit-container">
+            <button id="buttonExit" (click)="exitLogin()">
+                <img src="https://i.imgur.com/s46ggRU.png" alt="X">
+            </button>
+        </div>
+        <div class="top-container">
+            <div class="icon-container">
+                <img class="icon" src="assets/logo.png" alt="people">
+            </div>
+            <div class="title-container"><p class="title-in">Enter your profile</p>
+            </div>
+           
+        </div>
+        <form  [formGroup]="login" (ngSubmit)="onSubmit()">
+            <div class="input">
+                <input
+                    class="text-in"
+                    type="text" 
+                    placeholder="Insert username"
+                    name="username"
+                    formControlName="username"
+                >
+                
+                <div class="password-container">
+                    <input
+                        class="text-in"
+                        [type]="hide ? 'password' : 'text'"
+                        placeholder="Insert password"
+                        name="password"
+                        formControlName="password"
+                    >
+
+                    <button class="toggle-password" (click)="hide = !hide; $event.preventDefault()">
+                        <i [class]="hide ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>                
+                </div>
+                
+                
+                <div class="access-button">
+                    <button class="button-in" type="submit">Enter</button>
+                </div>
+                
+            </div>
+           
+            
+            
+        </form>
+        <div class="link-subscribe-container">
+                
+            <a class="link-subscribe" routerLink="/signin">Don't have an account? Sign up now!</a>
+        </div>
+    </div>
+</div>

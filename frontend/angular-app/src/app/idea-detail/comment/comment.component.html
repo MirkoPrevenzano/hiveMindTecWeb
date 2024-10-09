@@ -1,0 +1,15 @@
+
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
+<li class="p-2.5 sm:my-4 my-2 border-stone-50 border-2 shadow-black shadow-sm bg-gray-100 rounded-md">
+    <div class="flex justify-between">
+        <div [routerLink]="['/profile', author]" class="cursor-pointer font-bold text-sm text-slate-600 mt-1 hover:text-slate-400 hover:underline transition duration-300 ease-in-out">{{author}}</div>
+        <div class="text-xs text-slate-600 mt-1  sm:mr-0 mr-3">{{dateAsString}}</div>
+    </div>
+    <div class="flex justify-between items-center mt-2.5 p-2.5 rounded-md bg-gray-50 shadow-sm shadow-black">
+        <p class="font-thin sm:text-sm text-xs w-2/3 sm:w-4/5">{{testContainer}}</p>
+        <i class="fas fa-regular fa-heart cursor-pointer sm:text-lg text-xs"  (click)="onLike()"> {{likes}}</i>
+    </div>
+</li>

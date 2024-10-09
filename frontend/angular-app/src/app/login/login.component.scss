@@ -1,0 +1,291 @@
+
+.login {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.title-in{
+  color: #0369a1;
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+form {
+  position: relative;
+  #error {
+    position: absolute;
+    top: -40px;
+    left: 10%;
+    width: 80%;
+    color: red;
+    font-size: 16px;
+  }
+}
+
+.login-form {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+
+  display: block;
+  background:white;
+  
+  width: 90vw;
+  max-width: 500px;
+  border-radius: 15px;
+  padding: 20px;
+}
+
+.button-exit-container{
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px;
+  margin: 0px;
+}
+
+.button-exit-container button{
+  width: 2rem;
+}
+
+.top-container {
+  border-bottom: solid 1px #cccccc;
+}
+
+.top-container .icon-container {
+  display: flex;
+  margin-top: 0;
+  padding: 0;
+  justify-content:center;
+}
+
+.icon {
+  width:10rem;
+  padding: 0px;
+  margin: 0px;
+}
+
+.title-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  padding: 0;
+  
+}
+
+
+
+
+
+
+.input {
+  width: 100%;
+  padding: 30px;
+  border-bottom: solid 1px #cccccc;
+}
+
+.text-in {
+  margin: 7px auto;
+  width: 100%;
+  height: 50px;
+  padding-left: 30px;
+  border: 1px solid #0369a1;
+  border-radius: 30px;
+  background: #F9FAFC;
+  color: #8DA0BC;
+  outline: none;
+  letter-spacing: 1px;
+}
+
+.text-in:focus {
+  background: #fff;
+}
+
+::placeholder {
+  color: #8DA0BC;
+  opacity: 1;
+}
+
+.text-in.is-invalid {
+  border: 1px solid rgb(223, 49, 49);
+}
+
+span {
+  color: #555;
+  width: 100%;
+  font-size: 12px;
+  margin-left: 20px;
+}
+
+
+
+.access-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin:20px 0 0 0;
+}
+
+.access-button .button-in {
+  
+  width: 100%;
+  background: #0369a1;
+  color: #fff;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.15em;
+  padding: 10px;
+}
+
+.button-in:hover {
+  transform: scale(1.05);
+}
+
+.link-subscribe {
+  color: #8DA0BC;
+  font-size: 1.2em;
+}
+
+.link-subscribe:hover {
+  color: #0369a1;
+}
+
+.link-subscribe-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.password-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  border-bottom: solid 1px #cccccc;
+}
+
+.password-container .input {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.toggle-password {
+  position: absolute;
+  left: 88%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+
+
+@media (min-width: 769px) {
+  .login-form {
+    width: 70%;
+  }
+  .toggle-password {
+    left: 88%;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .login-form {
+    top:20%;
+    height: auto;
+    width: 85%; /* Aumenta la larghezza per sfruttare al massimo lo spazio disponibile */
+    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Per i browser WebKit */
+    mask-image: radial-gradient(white, black); /* Per gli altri browser, assicura che la scrollbar rispetti gli angoli curvi */
+    border-radius: 20px; /* Mantiene gli angoli curvi del form */
+  }
+  .toggle-password {
+    left: 85%;
+  }
+  .title-container, .input, .button-in, .text-in {
+    padding: 5px; /* Riduce ulteriormente il padding per risparmiare spazio */
+  }
+  .text-in {
+    font-size: 12px; /* Diminuisce la dimensione del testo per migliorare la leggibilità su schermi molto piccoli */
+  }
+  .button-in {
+    height: 45px; /* Riduce l'altezza dei pulsanti per adattarsi meglio agli schermi piccoli */
+  }
+  .link-subscribe {
+    font-size: 15px; /* Riduce la dimensione del testo per migliorare la leggibilità su schermi molto piccoli */
+  }
+  .text-in{
+    font-size: 13px;
+  }
+  
+}
+@media (max-width: 320px) {
+  .login-form {
+    top:20%;
+    height: 70%;
+    width: 90%; /* Aumenta la larghezza per sfruttare al massimo lo spazio disponibile */
+    overflow-y: auto;
+    -webkit-mask-image: -webkit-radial-gradient(white, black); /* Per i browser WebKit */
+    mask-image: radial-gradient(white, black); /* Per gli altri browser, assicura che la scrollbar rispetti gli angoli curvi */
+    border-radius: 20px; /* Mantiene gli angoli curvi del form */
+  }
+  .title-container, .input, .button-in, .text-in {
+    padding: 5px; /* Riduce ulteriormente il padding per risparmiare spazio */
+  }
+  .text-in {
+    font-size: 12px; /* Diminuisce la dimensione del testo per migliorare la leggibilità su schermi molto piccoli */
+  }
+  .button-in {
+    height: 45px; /* Riduce l'altezza dei pulsanti per adattarsi meglio agli schermi piccoli */
+  }
+  .link-subscribe {
+    font-size: 13px; /* Riduce la dimensione del testo per migliorare la leggibilità su schermi molto piccoli */
+  }
+  
+  
+}
+@media (max-height: 750px) {
+  .login-form {
+    top: 20%;
+    height: 65vh; /* Utilizza il 80% dell'altezza della viewport */
+    width: 60vw;
+    overflow-y: auto;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    border-radius: 20px;
+  }
+  .toggle-password {
+    left: 85%;
+  }
+  .title-container, .input, .button-in, .text-in {
+    padding: 5px;
+  }
+  .text-in {
+    font-size: 12px;
+  }
+  .button-in {
+    height: 45px;
+  }
+  .link-subscribe {
+    font-size: 13px;
+  }
+  .text-in{
+    font-size: 13px;
+  }
+}
+
+.snackBarSuccess {
+  background-color: #4caf50;
+  color: white;
+}
+.snackBarWarning {
+  background-color: #ff9800;
+  color: white;
+}
+.snackBarError {
+  background-color: #f44336;
+  color: white;
+}

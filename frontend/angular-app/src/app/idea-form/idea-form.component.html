@@ -1,0 +1,31 @@
+
+<div class="status-update-input-box">
+  <form id="containerComponent" [formGroup]="ideaForm" (ngSubmit)="onSubmit()" > 
+   
+    <div class="row input-box-container">
+      <div class="columns">
+        <div class="editor-container">
+          <label>
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" class="desktop-menu"></ngx-editor-menu>
+            <ngx-editor-floating-menu [editor]="editor" class="mobile-menu"></ngx-editor-floating-menu>
+          </label>
+      </div>
+      <div class="textfield">
+        <input type="text"  id="title" name="title" formControlName="title" placeholder="Title" >
+        <ngx-editor [editor]="editor" formControlName="description" >
+        </ngx-editor>
+        
+      </div>
+
+      </div>
+    </div>
+    <div class="small-12 medium-5 columns">
+      <div class="user-submit-box">
+        <button type="submit" class="submit-button"> {{ isEditModeLocal ? 'Update Idea!' : 'Add Idea!' }}</button>
+
+      </div>
+    </div>
+  </form>
+</div>
+
+

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+@if(isNotFound()){
+    <app-not-found></app-not-found>
+}
+@else{
+    
+
+
+ <div class="flex items-center justify-center    pt-20 pb-4">     
+<li class="flex items-center flex-wrap content-between  px-4 py-2 border-b">
+
+    <div class="fixed-width-container max-w-4xl px-10 my-4 py-6 bg-white rounded-lg shadow-md">
+        <div class="flex justify-between items-center">
+            <span class="font-light text-gray-600">{{dateAsString}}</span>
+        </div>
+        <div class="mt-2">
+            <a class="text-2xl text-gray-700 font-bold hover:text-gray-600" [routerLink]="['/idea', id]">{{title}}</a>
+            <p class="mt-2 text-gray-600" [innerHTML]="description"></p>
+        </div>
+        
+        <div class="flex justify-between mt-2">
+            <div class="container-like pt-3">
+                <i class="fas fa-regular fa-thumbs-up likes pr-5 pt-5 pl-0 fa-lg cursor-pointer text-sky-600" (click)="onLike()"> {{ formatNumber(likes) }}</i>
+                <i class="dislikes fas fa-solid fa-thumbs-down px-5 pt-5 fa-lg cursor-pointer text-sky-900" (click)="onDislike()">  {{ formatNumber(dislikes) }}</i>
+            </div>
+            <div>
+                <a class="flex items-center" [routerLink]="['/profile', authorIdea]">
+                    <img class="mx-4 w-10 h-10 object-cover rounded-full hidden sm:block bg-slate-200" src="https://www.pngmart.com/files/21/Account-User-PNG-Photo.png" alt="avatar">
+                    <p class="truncate text-gray-700 font-bold text-xs lg:text-lg md:text-base sm:text-sm pt-8 sm:pt-5">{{authorIdea}}</p>
+                </a>
+            </div>
+        </div>
+    
+        <div class="flex justify-center items-center">
+            <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()">
+                <div class="relative flex h-10 w-full min-w-52 sm:min-w-96 max-w-xl"> 
+                    <input class="!absolute right-1 top-1 z-10 select-none rounded bg-sky-700 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-sky-700/20 transition-all hover:shadow-lg hover:shadow-sky-700/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:bg-blue-gray-500 peer-placeholder-shown:opacity-50 peer-placeholder-shown:shadow-none" type="submit" data-ripple-light="true" value="Send"/>
+                    <input formControlName="comment"  type="text" class="peer h-full w-full rounded-[7px] border border-blue-gray-200 bg-transparent px-3 py-2.5 pr-20 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-sky-700 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50  overflow-auto" placeholder=" " required/>
+                    <label class="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[3.75] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-sky-700 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-sky-700 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-sky-700 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">Insert comment</label>
+                </div>
+            </form>
+        </div>
+
+        <ul>
+            @for(item of commentArray; track item.id){
+                <app-comment [comment]=item />
+            } @empty {
+                <li>No comments to show.</li>
+            }
+        </ul>
+        <button *ngIf="commentArray.length < numberOfComments" (click)="loadMoreComments()" class="text-blue-500 hover:text-blue-700 transition duration-300 ease-in-out">Show More</button>
+
+    </div>
+
+
+</li>
+</div>
+        
+        
+
+    
+}

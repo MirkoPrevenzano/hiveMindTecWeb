@@ -1,0 +1,72 @@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<div class="signIn">
+    <div class="signIn-form">
+        <div class="button-exit-container">
+            <button id="buttonExit" (click)="exitSignIn()">
+                <img src="https://i.imgur.com/s46ggRU.png" alt="X">
+            </button>
+        </div>
+        <div class="top-container">
+            <div class="icon-container">
+                <img class="icon" src="assets/logo.png" alt="people">
+            </div>
+            <div class="title-container"><p class="title-in">Subscribe</p>
+            </div>
+           
+        </div>
+        <form  [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+            <div class="input">
+                <input
+                    class="text-in"
+                    type="text" 
+                    placeholder="Insert name"
+                    name="name"
+                    formControlName="name"
+                >
+                <input
+                    class="text-in"
+                    type="text" 
+                    placeholder="Insert surname"
+                    name="surname"
+                    formControlName="surname"
+                >
+                <input
+                    class="text-in"
+                    type="text" 
+                    placeholder="Insert username"
+                    name="username"
+                    formControlName="username"
+                >
+                <input
+                    class="text-in"
+                    type="email" 
+                    placeholder="Insert email"
+                    name="email"
+                    formControlName="email"
+                >
+               <!-- Aggiungi un div esterno per raggruppare input e bottone -->
+                <div class="password-container">
+                    <input
+                        class="text-in"
+                        [type]="hide ? 'password' : 'text'"
+                        placeholder="Insert password"
+                        name="password"
+                        formControlName="password"
+                    >
+                    <!-- Pulsante Show/Hide Password -->
+                    <button class="toggle-password" (click)="hide = !hide; $event.preventDefault()">
+                        <i [class]="hide ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                    </button>                
+                </div>
+                <div class="subscribe-button-container">
+                    <button class="subscribe-button" type="submit">Register</button>
+                </div>
+            </div>
+            <div class="link-login-container">
+                <a class="link-login" routerLink="/login">Already have an account? Sign in now!</a>
+            </div>
+        </form>
+    </div>
+</div>
+

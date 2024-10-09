@@ -1,0 +1,32 @@
+
+.fixed-width-container {
+    width: 65vw; 
+    height: auto;
+}
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 80px;
+}
+@media screen and (max-width: 600px) {
+    .container-like i{
+
+        font-size: 15px;
+    }
+    .container-like .likes{
+        padding-right: 10px;
+        padding-left: 0px;
+
+    }
+    .container-like .dislikes{
+        padding-right: 10px;
+    }
+    .truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 40px; 
+    }
+    
+}
