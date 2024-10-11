@@ -104,6 +104,7 @@ export class MyProfileComponent {
       const dialogRef = this.dialog.open(IdeaFormComponent, {
         minWidth:"50vw" ,
         minHeight:"24vh",
+        maxHeight:"80vh",
         disableClose: false, 
         hasBackdrop: true, 
         autoFocus: true, 

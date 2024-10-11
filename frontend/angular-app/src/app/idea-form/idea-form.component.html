@@ -7,12 +7,16 @@
         <div class="editor-container">
           <label>
             <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" class="desktop-menu"></ngx-editor-menu>
-            <ngx-editor-floating-menu [editor]="editor" class="mobile-menu"></ngx-editor-floating-menu>
+
+            <ngx-editor-floating-menu [editor]="editor"  >
+              <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" class="mobile-menu" ></ngx-editor-menu>
+
+            </ngx-editor-floating-menu>
           </label>
       </div>
       <div class="textfield">
         <input type="text"  id="title" name="title" formControlName="title" placeholder="Title" >
-        <ngx-editor [editor]="editor" formControlName="description" >
+        <ngx-editor   [editor]="editor" formControlName="description">
         </ngx-editor>
         
       </div>

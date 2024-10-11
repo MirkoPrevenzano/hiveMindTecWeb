@@ -122,6 +122,7 @@
 
   .editor-container {
 	position: relative;
+	
   }
   
   .submit-button {
@@ -165,7 +166,6 @@
 	  display: none;
 	}
 	.mobile-menu {
-		
 	  display: block; // Mostra il menu sui dispositivi mobili
 	  transform: translateY(15vh); // Sposta leggermente verso il basso per non sovrapporsi al testo
 	  // Assicura che il menu non sia traslato e sia visibile
@@ -176,7 +176,6 @@
 	  display: none;
 	}
 	.mobile-menu {
-		
 	  display: block; // Mostra il menu sui dispositivi mobili
 	  transform: translateY(15vh); // Sposta leggermente verso il basso per non sovrapporsi al testo
 	  // Assicura che il menu non sia traslato e sia visibile
@@ -198,10 +197,11 @@
 	  display: none;
 	}
 	.mobile-menu {
-		
 	  display: block; // Mostra il menu sui dispositivi mobili
 	  transform: translateY(35vh); // Sposta leggermente verso il basso per non sovrapporsi al testo
 	  // Assicura che il menu non sia traslato e sia visibile
+	  
+	 
 	}
   }
 

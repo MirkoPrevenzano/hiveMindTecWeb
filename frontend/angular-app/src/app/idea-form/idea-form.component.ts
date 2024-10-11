@@ -1,4 +1,4 @@
-import { Component,Inject, Optional , Output, EventEmitter} from '@angular/core';
+import { Component,Inject, Optional , Output, EventEmitter } from '@angular/core';
 import { FormGroup, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { RestBackendService } from '../_service/rest-backend/rest-backend.service';
 import { Router } from '@angular/router';
@@ -19,16 +19,13 @@ import { NotifyService } from '../_service/notify/notify.service';
   @Output() formEmit = new EventEmitter<void>();
 
   editor: Editor;
+ 
   toolbar: Toolbar = [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
+    ['bold', 'italic','underline', 'strike'],
     [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
     ['undo', 'redo']
-    
   ];
+
 
   ideaForm: FormGroup;
   restService = inject(RestBackendService);
@@ -135,9 +132,8 @@ import { NotifyService } from '../_service/notify/notify.service';
     if (this.isValidFormIdea()){this.notifyService.openSnackBar("Please fill in all fields", "Close", "snackBarWarning");}
 
     else  if (textWithoutHtml.length > maxLength) {
-      this.notifyService.openSnackBar("The description must be less than ${maxLength} characters or empty.", "Close", "snackBarWarning");      
+      this.notifyService.openSnackBar("The description must be less than 400 characters or empty.", "Close", "snackBarWarning");      
     }
-
     else {
       
       this.restService.createIdea({
@@ -154,6 +150,7 @@ import { NotifyService } from '../_service/notify/notify.service';
     }
   }
 
+  
   
 }
 
