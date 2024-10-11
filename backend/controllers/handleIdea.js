@@ -3,12 +3,16 @@ import {User} from '../models/db.js';
 import { UserIdeaLike } from '../models/db.js';
 import { CommentController } from './handleComment.js';
 import{Comment} from '../models/db.js';
-import sequelize from 'sequelize';
+import sequelize, { where } from 'sequelize';
 export class IdeaController{
 
 
     static async saveIdea(req,res){
 
+        const textWithoutHtml = this.removeHtmlTags(req.body.description);
+        if (textWithoutHtml.length > 400) {
+            throw new Error("The description is too long");
+        }
         const idUser=await User.findOne({ where: { username: req.user.user } });
         let newIdea= new Idea({
             title: req.body.title,
@@ -38,12 +42,6 @@ export class IdeaController{
         
         let limitNumberOfIdeas = parseInt(req.query.limit);
         let currentPage = parseInt(req.query.page);
-        /* if (!limitNumberOfIdeas|| limitNumberOfIdeas <= 0) {
-            return res.status(400).json({ error: "Invalid limit value" });
-        }
-        if (!currentPage || currentPage <= 0) {
-            return res.status(400).json({ error: "Invalid page value" });
-        }*/
         let currentOffset = limit * (currentPage - 1);
 
         return Idea.findAll({
@@ -224,12 +222,6 @@ export class IdeaController{
         
         let limitNumberOfIdeas = parseInt(req.query.limit);
         let currentPage = parseInt(req.query.page);
-        /* if (!limitNumberOfIdeas|| limitNumberOfIdeas <= 0) {
-            return res.status(400).json({ error: "Invalid limit value" });
-        }
-        if (!currentPage || currentPage <= 0) {
-            return res.status(400).json({ error: "Invalid page value" });
-        }*/
         let offsetIdeas = limitNumberOfIdeas * (currentPage - 1);
         let currentWeek = new Date();
         currentWeek.setDate(currentWeek.getDate() - 7); 
@@ -244,6 +236,11 @@ export class IdeaController{
             order: [
                 [sequelize.literal('CAST("like" AS FLOAT) /  CASE WHEN "dislike" = 0 THEN 1 ELSE "dislike" END'), order]
             ],
+            where: {
+                createdAt: {
+                    [sequelize.Op.gt]: currentWeek
+                }
+            },
             limit: limitNumberOfIdeas,
             offset: offsetIdeas
             
@@ -255,13 +252,7 @@ export class IdeaController{
 
     static async getIdeaMostControversial(req, res) {
         
-        let limitNumberOfIdeas = parseInt(req.query.limit);
-        /* if (!limitNumberOfIdeas|| limitNumberOfIdeas <= 0) {
-            return res.status(400).json({ error: "Invalid limit value" });
-        }
-        if (!currentPage || currentPage <= 0) {
-            return res.status(400).json({ error: "Invalid page value" });
-        }*/
+        let limitNumberOfIdeas = parseInt(req.query.limit)
         let currentPage = parseInt(req.query.page);
         let offsetIdeas = limitNumberOfIdeas * (currentPage - 1);
 
@@ -278,8 +269,24 @@ export class IdeaController{
             },
             order: [
                 [sequelize.literal('ABS("like" - "dislike")'), 'ASC'],
-                [sequelize.literal('"like" + "dislike"'), 'DESC']
             ],
+            where: { 
+                [sequelize.Op.or]: [
+                    {
+                        like: {
+                            [sequelize.Op.gt]: 0
+                        }
+                    },
+                    {
+                        dislike: {
+                            [sequelize.Op.gt]: 0
+                        }
+                    }
+                ],
+                createdAt: {
+                    [sequelize.Op.gt]: currentWeek
+                }
+            },
             limit: limitNumberOfIdeas,
             offset: offsetIdeas
         });
@@ -294,12 +301,6 @@ export class IdeaController{
       
         let limitNumberOfIdeas = parseInt(req.query.limit);
         let currentPage = parseInt(req.query.page);
-        /* if (!limitNumberOfIdeas|| limitNumberOfIdeas <= 0) {
-            return res.status(400).json({ error: "Invalid limit value" });
-        }
-        if (!currentPage || currentPage <= 0) {
-            return res.status(400).json({ error: "Invalid page value" });
-        }*/
         let offsetIdeas = limitNumberOfIdeas * (currentPage - 1);
         return await Idea.findAll({
             where: {
@@ -333,6 +334,10 @@ export class IdeaController{
 
 
     static async updateIdea(req){
+        const textWithoutHtml = this.removeHtmlTags(req.query.description);
+        if (textWithoutHtml.length > 400) {
+            throw new Error("The description is too long");
+        }
         let ideaUpdate= await Idea.findByPk(req.params.id);
         ideaUpdate.title=req.query.title;
         ideaUpdate.description=req.query.description;

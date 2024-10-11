@@ -5,12 +5,6 @@ export class CommentController{
 
         let limitNumberOfIdeas=parseInt(req.query.limit);
         let currentPage=parseInt(req.query.page);
-       /* if (!limitNumberOfIdeas|| limitNumberOfIdeas <= 0) {
-            return res.status(400).json({ error: "Invalid limit value" });
-        }
-        if (!currentPage || currentPage <= 0) {
-            return res.status(400).json({ error: "Invalid page value" });
-        }*/
         let offsetIdeas=limitNumberOfIdeas*(currentPage-1);
 
         return Comment.findAll({
