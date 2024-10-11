@@ -17,4 +17,10 @@ Progetto del corso di Tecnologie Web.
    cd frontend/angular-app
    npm install
    npm run start
+
+##  Endpoint
+- Website: http://localhost:4200/
+- Server: http://localhost:3000/
+- Swagger UI documentation: http://localhost:3000/api-docs/
+
    
